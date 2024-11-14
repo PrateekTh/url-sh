@@ -12,7 +12,9 @@ async function handleGenerateShortUrl(req, res){
         visitHistory: []
     })
 
-    return res.status(201).json({data:{shortId: shortId}});
+    return res.render("home", {
+        id: shortId
+    });
 }
 
 async function handleGetRedirectUrl(req,res){
@@ -50,6 +52,8 @@ async function handleDeleteShortUrl(req,res) {
     } catch (err) {
         throw new Error("Error adding user: " + err);
     }
+
+    if(!result) res.status(404).json({message: "Requested URL does not exist"})
     return res.status(200).json({data: {shortId:result.shortId}})
 }
 

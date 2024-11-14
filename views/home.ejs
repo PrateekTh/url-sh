@@ -29,6 +29,15 @@
         padding: 0.5rem;
     }
 
+    .new-url-box{
+        margin: 0.5rem;
+        padding: 2rem;
+        padding-top: 0;
+        border: 2px solid #74526C;
+        border-radius: 20px;
+        width: fit-content;
+    }
+
     .input-box{
         font-size: 1rem; padding: 0.8rem; border-radius: 25px; outline: none;
     }
@@ -49,6 +58,10 @@
         cursor: pointer;
     }
 
+    .link{
+        color: #FFD9CE;
+    }
+
 </style>
 <body>
     <h1 class="header"> <span>෴ sh.url</span></h1>
@@ -58,6 +71,16 @@
             <input class="input-box input-text" type="text" name="url" placeholder="Enter a link">
             <button class="input-box input-btn" type="submit"> Generate </button>
         </form>
+
+        
     </div>
+
+    <% if(locals.id) { %>
+        <div class="new-url-box">
+            <h2>Short URL Generated!</h2>
+            <span> http://localhost:8000/url/<%= id %> - </span> 
+            <a class="link" href="http://localhost:8000/url/<%= id %>" target="_blank" rel="noopener noreferrer"> visit  ☍ </a>
+        </div>
+    <% } %>
 </body>
 </html>

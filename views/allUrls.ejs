@@ -14,6 +14,10 @@
         margin: 0;
     }
 
+    td{
+        padding: 0.4rem;
+    }
+
     .header {
         background-color: #74526C;
         margin: 0;
@@ -37,17 +41,37 @@
         font-weight: bold;
     }
 
+    .link{
+        color: #FFD9CE;
+    }
+    .link:hover{
+        color: #ac86a3;
+    }
+
 </style>
 <body>
     <h1 class="header"> <span>෴ sh.url</span></h1>
     <div class="url-list-container">
-        <% if(urls) { %>
+        <% if(locals.urls) { %>
         <div class="url-head">Current Urls</div>
-        <ul>
-            <% urls.forEach((url) => { %>
-                <li> <%= url.shortId %> - <%= url.visitHistory.length %> - <%= url.redirectUrl %> </li>
+        <br/>
+        <table>
+            <th>S.No</th>
+            <th>ShortId</th>
+            <th>Clicks</th>
+            <th>Link</th>
+            <th>Visit</th>
+
+            <% urls.forEach((url, key) => { %>
+                <tr> 
+                    <td style="text-align: right; padding-right: 5px;"><%= key + 1 %></td>
+                    <td><%= url.shortId %> </td>
+                    <td style="text-align: center;"><%= url.visitHistory.length %></td>
+                    <td><%= url.redirectUrl %> </td>
+                    <td><a class="link" href="http://localhost:8000/url/<%= url.shortId %>" target="_blank" rel="noopener noreferrer"> http://localhost:8000/url/<%= url.shortId %> </a></td>
+                </tr>
             <%  }) %>
-        </ul>
+        </table>
         <% } %>
     </div>
 </body>
