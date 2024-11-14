@@ -3,6 +3,8 @@ const path = require("path")
 const {connectMongoDB} = require("./connection")
 const urlRoute = require("./routes/url")
 const staticRoute = require("./routes/staticRouter")
+const userRoute = require("./routes/user")
+
 
 const app = express();
 const PORT = 8000;
@@ -17,8 +19,10 @@ connectMongoDB(MONGO_DB_URI)
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
+app.use(express.static("public"));
 
 app.use("/url", urlRoute);
 app.use("/", staticRoute);
+app.use("/user", userRoute);
 
 app.listen(PORT, ()=> console.log(`Server started at Port ${PORT}!`));

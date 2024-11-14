@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sh.url</title>
+    <link rel="stylesheet" type="text/css" href="/assets/style-base.css" /> 
+</head>
+<body>
+    <h1 class="header"> <span>෴ sh.url</span></h1>
+    <div class="form-container">
+        <h2>Log In</h2>
+        <form class="form-container" method="POST" action="/user/login">
+            <input class="input-box input-text" type="text" name="email" placeholder="email id">
+            <input class="input-box input-text" type="password" name="password" placeholder="password">
+            <button class="input-box input-btn" type="submit"> Log In </button>
+        </form>
+
+        <% if(locals.error){ %>
+            <div class="error"> <%= error %> </div>
+        <% } %>
+    </div>
+</body>
+</html>
