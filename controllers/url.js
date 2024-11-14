@@ -42,8 +42,29 @@ async function handleGetAnalytics(req,res){
     })
 }
 
+async function handleDeleteShortUrl(req,res) {
+    const shortId = req.params.shortId;
+    let result;
+    try{
+        result = await URL.findOneAndDelete({shortId: shortId});
+    } catch (err) {
+        throw new Error("Error adding user: " + err);
+    }
+    return res.status(200).json({data: {shortId:result.shortId}})
+}
+
+async function handleGetAllShortUrls(req,res) {
+    const allUrls = await URL.find({});
+    
+    return res.render("allUrls", {
+        urls: allUrls,
+    })
+}
+
 module.exports = {
     handleGenerateShortUrl,
     handleGetRedirectUrl,
-    handleGetAnalytics
+    handleGetAnalytics,
+    handleDeleteShortUrl,
+    handleGetAllShortUrls
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sh.url</title>
+</head>
+<style>
+    body {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        background: #000;
+        color: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+    .header {
+        background-color: #74526C;
+        margin: 0;
+        padding: 0.5rem;
+    }
+    
+    .header > span:hover{
+        color: #FFD9CE;
+        cursor: pointer;
+    }
+
+    .form-container {
+        padding: 0.5rem;
+    }
+
+    .input-box{
+        font-size: 1rem; padding: 0.8rem; border-radius: 25px; outline: none;
+    }
+
+    .input-text{
+        width: 40%; min-width: 250px;
+    }
+
+    .input-btn{
+        background: #74526C;
+        font-weight: bold;
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
+    }
+
+    .input-btn:hover{
+        background: #000;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+    <h1 class="header"> <span>෴ sh.url</span></h1>
+    <div class="form-container">
+        <h2>Generate new URL</h2>
+        <form method="POST" action="/url">
+            <input class="input-box input-text" type="text" name="url" placeholder="Enter a link">
+            <button class="input-box input-btn" type="submit"> Generate </button>
+        </form>
+    </div>
+</body>
+</html>
