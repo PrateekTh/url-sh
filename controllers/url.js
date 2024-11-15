@@ -9,7 +9,8 @@ async function handleGenerateShortUrl(req, res){
     await URL.create({
         shortId: shortId,
         redirectUrl: body.url,
-        visitHistory: []
+        visitHistory: [],
+        createdBy: req.user
     })
 
     return res.render("home", {
@@ -57,12 +58,15 @@ async function handleDeleteShortUrl(req,res) {
     return res.status(200).json({data: {shortId:result.shortId}})
 }
 
-async function handleGetAllShortUrls(req,res) {
-    const allUrls = await URL.find({});
-    
-    return res.render("allUrls", {
-        urls: allUrls,
-    })
+async function handleGetUserShortUrls(req,res) {
+    // console.log(req.user)
+    if(req.user){
+        const userUrls = await URL.find({ createdBy:req.user._id});
+        return res.render("allUrls", {
+            urls: userUrls,
+        })
+    }
+    else return res.render("allUrls");
 }
 
 module.exports = {
@@ -70,5 +74,5 @@ module.exports = {
     handleGetRedirectUrl,
     handleGetAnalytics,
     handleDeleteShortUrl,
-    handleGetAllShortUrls
+    handleGetUserShortUrls
 }
