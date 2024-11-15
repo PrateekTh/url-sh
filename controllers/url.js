@@ -61,7 +61,7 @@ async function handleDeleteShortUrl(req,res) {
 async function handleGetUserShortUrls(req,res) {
     // console.log(req.user)
     if(req.user){
-        const userUrls = await URL.find({ createdBy:req.user._id});
+        const userUrls = await URL.find({ createdBy:req.user.id});
         return res.render("allUrls", {
             urls: userUrls,
         })
